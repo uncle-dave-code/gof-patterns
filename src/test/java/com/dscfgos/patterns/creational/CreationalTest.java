@@ -2,6 +2,7 @@ package com.dscfgos.patterns.creational;
 
 import com.dscfgos.patterns.creational.builder.ImmutableUser;
 import com.dscfgos.patterns.creational.builder.UserBuilder;
+import com.dscfgos.patterns.creational.prototype.CloneableUser;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -38,5 +39,21 @@ class CreationalTest {
 
         assertEquals("User{firstname='Uncle', lastname='Dave Code'}", user.toString());
         assertEquals("Immutable User{firstname='Uncle', lastname='Dave Code'}", immutableUser.toString());
+    }
+
+    @org.junit.jupiter.api.Test
+    void testPrototype() {
+        var cloneableUser = new CloneableUser();
+        cloneableUser.setFirstname("Uncle");
+        cloneableUser.setLastname("Dave Code");
+        cloneableUser.setGender("Male");
+        cloneableUser.setAddress("Some Address");
+        cloneableUser.setBirthday(LocalDateTime.of(1979, Month.DECEMBER, 11, 0, 0));
+
+        var copyUser = cloneableUser.copy();
+
+        logger.log(Level.INFO, copyUser.toString());
+
+        assertEquals("User{firstname='Uncle', lastname='Dave Code'}", copyUser.toString());
     }
 }
