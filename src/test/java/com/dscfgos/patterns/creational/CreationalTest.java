@@ -2,6 +2,7 @@ package com.dscfgos.patterns.creational;
 
 import com.dscfgos.patterns.creational.builder.ImmutableUser;
 import com.dscfgos.patterns.creational.builder.UserBuilder;
+import com.dscfgos.patterns.creational.factory_method.*;
 import com.dscfgos.patterns.creational.prototype.CloneableUser;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.time.Month;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CreationalTest {
 
@@ -37,8 +38,10 @@ class CreationalTest {
         logger.log(Level.INFO, user.toString());
         logger.log(Level.INFO, immutableUser.toString());
 
-        assertEquals("User{firstname='Uncle', lastname='Dave Code'}", user.toString());
-        assertEquals("Immutable User{firstname='Uncle', lastname='Dave Code'}", immutableUser.toString());
+        assertAll(
+                () -> assertEquals("User{firstname='Uncle', lastname='Dave Code'}", user.toString()),
+                () -> assertEquals("Immutable User{firstname='Uncle', lastname='Dave Code'}", immutableUser.toString())
+        );
     }
 
     @org.junit.jupiter.api.Test
@@ -55,5 +58,23 @@ class CreationalTest {
         logger.log(Level.INFO, copyUser.toString());
 
         assertEquals("User{firstname='Uncle', lastname='Dave Code'}", copyUser.toString());
+    }
+
+    @org.junit.jupiter.api.Test
+    void testFactoryMethod() {
+        var shapeFactory = new ShapeFactory();
+        var shape1 = shapeFactory.geShape(ShapeType.CIRCLE);
+        var shape2 = shapeFactory.geShape(ShapeType.SQUARE);
+        var shape3 = shapeFactory.geShape(ShapeType.TRIANGLE);
+
+        shape1.draw();
+        shape2.draw();
+        shape3.draw();
+
+        assertAll(
+                () -> assertTrue(shape1 instanceof Circle),
+                () -> assertTrue(shape2 instanceof Square),
+                () -> assertTrue(shape3 instanceof Triangle)
+        );
     }
 }
