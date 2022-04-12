@@ -4,6 +4,9 @@ import com.dscfgos.patterns.creational.builder.ImmutableUser;
 import com.dscfgos.patterns.creational.builder.UserBuilder;
 import com.dscfgos.patterns.creational.factory_method.*;
 import com.dscfgos.patterns.creational.prototype.CloneableUser;
+import com.dscfgos.patterns.creational.singleton.EagerSingleton;
+import com.dscfgos.patterns.creational.singleton.LazySingleton;
+import com.dscfgos.patterns.creational.singleton.ThreadSafeSingleton;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -75,6 +78,24 @@ class CreationalTest {
                 () -> assertTrue(shape1 instanceof Circle),
                 () -> assertTrue(shape2 instanceof Square),
                 () -> assertTrue(shape3 instanceof Triangle)
+        );
+    }
+
+    @org.junit.jupiter.api.Test
+    void testSingleton() {
+        var lazyInstance1 = LazySingleton.getInstance();
+        var lazyInstance2 = LazySingleton.getInstance();
+
+        var eagerInstance1 = EagerSingleton.getInstance();
+        var eagerInstance2 = EagerSingleton.getInstance();
+
+        var theadSafeInstance1 = ThreadSafeSingleton.getInstance();
+        var theadSafeInstance2 = ThreadSafeSingleton.getInstance();
+
+        assertAll(
+                () -> assertEquals(lazyInstance1, lazyInstance2),
+                () -> assertEquals(eagerInstance1, eagerInstance2),
+                () -> assertEquals(theadSafeInstance1, theadSafeInstance2)
         );
     }
 }
