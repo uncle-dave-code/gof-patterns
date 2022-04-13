@@ -15,19 +15,19 @@ Ensure a class only has one instance, and provide a global point of access to it
 
 ### Structural Design Patterns
 #### Adapter
-allows classes with incompatible interfaces to work together by wrapping its own interface around that of an already existing class.
+Convert the interface of a class into another interface clients expect. Adapter lets classes work together that couldn't otherwise because of incompatible interfaces.
 #### Bridge
-decouples an abstraction from its implementation so that the two can vary independently.
+Decouple an abstraction from its implementation so that the two can vary independently.
 #### Composite
-composes zero-or-more similar objects so that they can be manipulated as one object.
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 #### Decorator
-dynamically adds/overrides behaviour in an existing method of an object.
+Attach additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
 #### Facade
-provides a simplified interface to a large body of code.
+Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 #### Flyweight
-reduces the cost of creating and manipulating a large number of similar objects.
+Use sharing to support large numbers of fine-grained objects efficiently.
 #### Proxy
-provides a placeholder for another object to control access, reduce cost, and reduce complexity.
+Provide a surrogate or placeholder for another object to control access to it.
 
 ### Behavior Design Patterns
 #### Chain Of Responsibility
