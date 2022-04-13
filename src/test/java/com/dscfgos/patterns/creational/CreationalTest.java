@@ -98,4 +98,24 @@ class CreationalTest {
                 () -> assertEquals(theadSafeInstance1, theadSafeInstance2)
         );
     }
+
+    @org.junit.jupiter.api.Test
+    void testAbstractFactory() {
+
+        var twoDimShapeFactory = com.dscfgos.patterns.creational.abstract_factory.ShapeFactory.getFactory(true);
+        var threeDimShapeFactory = com.dscfgos.patterns.creational.abstract_factory.ShapeFactory.getFactory(false);
+
+        var shape1 = twoDimShapeFactory.createShape(com.dscfgos.patterns.creational.abstract_factory.classes.ShapeType.CIRCLE);
+        var shape2 = threeDimShapeFactory.createShape(com.dscfgos.patterns.creational.abstract_factory.classes.ShapeType.CONE);
+
+        shape1.draw();
+        shape2.draw();
+
+        assertAll(
+                () -> assertTrue(shape1 instanceof com.dscfgos.patterns.creational.abstract_factory.classes.Circle),
+                () -> assertTrue(shape1 instanceof com.dscfgos.patterns.creational.abstract_factory.interfaces.TwoDimShape),
+                () -> assertTrue(shape2 instanceof com.dscfgos.patterns.creational.abstract_factory.classes.Cone),
+                () -> assertTrue(shape2 instanceof com.dscfgos.patterns.creational.abstract_factory.interfaces.ThreeDimShape)
+        );
+    }
 }
