@@ -8,6 +8,8 @@ import com.dscfgos.patterns.structural.bridge.Car;
 import com.dscfgos.patterns.structural.bridge.ConcreteCar;
 import com.dscfgos.patterns.structural.bridge.Green;
 import com.dscfgos.patterns.structural.bridge.Red;
+import com.dscfgos.patterns.structural.composite.CompositeCategory;
+import com.dscfgos.patterns.structural.composite.LeafCategory;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,5 +40,25 @@ class StructuralTest {
 
         assertEquals("Painting with color: #00FF00", greenCar.paint());
         assertEquals("Painting with color: #FF0000", redCar.paint());
+    }
+
+    @org.junit.jupiter.api.Test
+    void testComposite() {
+        var leaf11 = new LeafCategory("Leaf 1.1");
+        var leaf12 = new LeafCategory("Leaf 1.2");
+
+        var leaf21 = new LeafCategory("Leaf 2.1");
+        var leaf22 = new LeafCategory("Leaf 2.2");
+
+        var composite2 = new CompositeCategory("Composite 2");
+        composite2.addCategory(leaf21);
+        composite2.addCategory(leaf22);
+
+        var composite1 = new CompositeCategory("Composite 1");
+        composite1.addCategory(leaf11);
+        composite1.addCategory(leaf12);
+        composite1.addCategory(composite2);
+
+        composite1.showDetails();
     }
 }
