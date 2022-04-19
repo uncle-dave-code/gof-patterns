@@ -14,6 +14,8 @@ import com.dscfgos.patterns.structural.decorator.Circle;
 import com.dscfgos.patterns.structural.decorator.CustomShapeDecorator;
 import com.dscfgos.patterns.structural.decorator.Rectangle;
 import com.dscfgos.patterns.structural.facade.ShapeFacade;
+import com.dscfgos.patterns.structural.flyweight.FlyweightFactory;
+import com.dscfgos.patterns.structural.flyweight.ShapeType;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,4 +87,31 @@ class StructuralTest {
         shapeFacade.drawRectangle();
         shapeFacade.drawTriangle();
     }
+
+    @org.junit.jupiter.api.Test
+    void testFlyweight() {
+        var flyweight = new FlyweightFactory();
+
+        var shapeRedCircle1 = flyweight.getShape(ShapeType.CIRCLE, new com.dscfgos.patterns.structural.flyweight.Red());
+        var shapeRedCircle2 = flyweight.getShape(ShapeType.CIRCLE, new com.dscfgos.patterns.structural.flyweight.Red());
+        var shapeGreenRectangle1 = flyweight.getShape(ShapeType.RECTANGLE, new com.dscfgos.patterns.structural.flyweight.Green());
+        var shapeGreenRectangle2 = flyweight.getShape(ShapeType.RECTANGLE, new com.dscfgos.patterns.structural.flyweight.Green());
+        var shapeGreenRectangle3 = flyweight.getShape(ShapeType.RECTANGLE, new com.dscfgos.patterns.structural.flyweight.Green());
+        var shapeGreenTriangle = flyweight.getShape(ShapeType.TRIANGLE, new com.dscfgos.patterns.structural.flyweight.Green());
+        var shapeRedTriangle = flyweight.getShape(ShapeType.TRIANGLE, new com.dscfgos.patterns.structural.flyweight.Red());
+
+        shapeRedCircle1.draw();
+        shapeRedCircle2.draw();
+        shapeGreenRectangle1.draw();
+        shapeGreenRectangle2.draw();
+        shapeGreenRectangle3.draw();
+        shapeGreenTriangle.draw();
+        shapeRedTriangle.draw();
+
+        System.out.println("Poll Size: " + flyweight.getShapePoolSize());
+        assertEquals(4, flyweight.getShapePoolSize());
+
+    }
+
+
 }
