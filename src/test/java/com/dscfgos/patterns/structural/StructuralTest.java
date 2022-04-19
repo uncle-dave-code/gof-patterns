@@ -10,6 +10,9 @@ import com.dscfgos.patterns.structural.bridge.Green;
 import com.dscfgos.patterns.structural.bridge.Red;
 import com.dscfgos.patterns.structural.composite.CompositeCategory;
 import com.dscfgos.patterns.structural.composite.LeafCategory;
+import com.dscfgos.patterns.structural.decorator.Circle;
+import com.dscfgos.patterns.structural.decorator.CustomShapeDecorator;
+import com.dscfgos.patterns.structural.decorator.Rectangle;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,5 +63,16 @@ class StructuralTest {
         composite1.addCategory(composite2);
 
         composite1.showDetails();
+    }
+
+    @org.junit.jupiter.api.Test
+    void testDecorator() {
+        var shapeCircle = new Circle();
+        var customShapeCircle = new CustomShapeDecorator(new Circle());
+        var customShapeRectangle = new CustomShapeDecorator(new Rectangle());
+
+        shapeCircle.draw();
+        customShapeCircle.draw();
+        customShapeRectangle.draw();
     }
 }
