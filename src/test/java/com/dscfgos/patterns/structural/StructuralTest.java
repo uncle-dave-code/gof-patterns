@@ -13,6 +13,7 @@ import com.dscfgos.patterns.structural.composite.LeafCategory;
 import com.dscfgos.patterns.structural.decorator.Circle;
 import com.dscfgos.patterns.structural.decorator.CustomShapeDecorator;
 import com.dscfgos.patterns.structural.decorator.Rectangle;
+import com.dscfgos.patterns.structural.facade.ShapeFacade;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,5 +75,14 @@ class StructuralTest {
         shapeCircle.draw();
         customShapeCircle.draw();
         customShapeRectangle.draw();
+    }
+
+    @org.junit.jupiter.api.Test
+    void testFacade() {
+        var shapeFacade = new ShapeFacade();
+
+        shapeFacade.drawCircle();
+        shapeFacade.drawRectangle();
+        shapeFacade.drawTriangle();
     }
 }
