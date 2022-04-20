@@ -16,6 +16,7 @@ import com.dscfgos.patterns.structural.decorator.Rectangle;
 import com.dscfgos.patterns.structural.facade.ShapeFacade;
 import com.dscfgos.patterns.structural.flyweight.FlyweightFactory;
 import com.dscfgos.patterns.structural.flyweight.ShapeType;
+import com.dscfgos.patterns.structural.proxy.ProxyImage;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -113,5 +114,13 @@ class StructuralTest {
 
     }
 
+    @org.junit.jupiter.api.Test
+    void testProxy() {
+        var proxyImage = new ProxyImage("img_custom_header.png");
+
+        proxyImage.showImage();
+        proxyImage.showImage();
+        proxyImage.showImage();
+    }
 
 }
