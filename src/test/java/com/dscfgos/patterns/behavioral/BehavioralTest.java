@@ -7,6 +7,8 @@ import com.dscfgos.patterns.behavioral.command.OperationB;
 import com.dscfgos.patterns.behavioral.iterator.CustomCollection;
 import com.dscfgos.patterns.behavioral.iterator.Item;
 import com.dscfgos.patterns.behavioral.mediator.*;
+import com.dscfgos.patterns.behavioral.memento.UserCaretaker;
+import com.dscfgos.patterns.behavioral.memento.UserOriginator;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -85,5 +87,23 @@ class BehavioralTest {
         colleague5.send(new Message<>("4", "Hello 4"));
 
         assertThrows(RuntimeException.class, () -> colleague5.send(new Message<>("8", "Hello 4")));
+    }
+
+    @org.junit.jupiter.api.Test
+    void testMemento() {
+        var caretaker = new UserCaretaker();
+        var user = new UserOriginator(1L, "uncledavecode@gmail.com", "Uncle", "Dave Code");
+
+        System.out.println(user);
+
+        caretaker.add(user.createMemento());
+
+        user.setName("Uncle 2");
+
+        System.out.println(user);
+
+        user.restore(caretaker.get(0));
+
+        System.out.println(user);
     }
 }
