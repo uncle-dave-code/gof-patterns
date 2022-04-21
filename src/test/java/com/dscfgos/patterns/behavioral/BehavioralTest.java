@@ -2,7 +2,10 @@ package com.dscfgos.patterns.behavioral;
 
 import com.dscfgos.patterns.behavioral.chain_responsibility.ChainResponsibility;
 import com.dscfgos.patterns.behavioral.chain_responsibility.Request;
+import com.dscfgos.patterns.behavioral.command.OperationA;
+import com.dscfgos.patterns.behavioral.command.OperationB;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,5 +24,21 @@ class BehavioralTest {
                 () -> assertEquals(Request.DO_THIRD, chainResponsibility.processChain(Request.DO_THIRD)),
                 () -> assertThrows(RuntimeException.class, () -> chainResponsibility.processChain(Request.DO_FOURTH))
         );
+    }
+
+    @org.junit.jupiter.api.Test
+    void testCommand() {
+        var operations = List.of(
+                new OperationA("1"),
+                new OperationB("1"),
+                new OperationA("2"),
+                new OperationB("2"),
+                new OperationA("3"),
+                new OperationB("4")
+        );
+
+        for (var operation: operations) {
+            operation.execute();
+        }
     }
 }
