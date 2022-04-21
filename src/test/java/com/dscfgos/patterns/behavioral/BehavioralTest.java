@@ -4,6 +4,8 @@ import com.dscfgos.patterns.behavioral.chain_responsibility.ChainResponsibility;
 import com.dscfgos.patterns.behavioral.chain_responsibility.Request;
 import com.dscfgos.patterns.behavioral.command.OperationA;
 import com.dscfgos.patterns.behavioral.command.OperationB;
+import com.dscfgos.patterns.behavioral.iterator.CustomCollection;
+import com.dscfgos.patterns.behavioral.iterator.Item;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -39,6 +41,22 @@ class BehavioralTest {
 
         for (var operation: operations) {
             operation.execute();
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void testIterator() {
+        var items = new Item[]{
+                new Item("code1", "name1"),
+                new Item("code2", "name2"),
+                new Item("code3", "name3")};
+
+        CustomCollection<Item> itemsCollection = new CustomCollection<>(items);
+
+        var iterator = itemsCollection.getIterator();
+        while (iterator.hasNext()){
+            var item = iterator.next();
+            System.out.printf("Code %s : Name: %s%n", item.getCode(), item.getName());
         }
     }
 }
