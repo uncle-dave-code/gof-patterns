@@ -6,6 +6,7 @@ import com.dscfgos.patterns.behavioral.command.OperationA;
 import com.dscfgos.patterns.behavioral.command.OperationB;
 import com.dscfgos.patterns.behavioral.iterator.CustomCollection;
 import com.dscfgos.patterns.behavioral.iterator.Item;
+import com.dscfgos.patterns.behavioral.mediator.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -58,5 +59,31 @@ class BehavioralTest {
             var item = iterator.next();
             System.out.printf("Code %s : Name: %s%n", item.getCode(), item.getName());
         }
+    }
+
+    @org.junit.jupiter.api.Test
+    void testMediator() {
+
+        Mediator<String> mediator = new ConcreteMediator();
+
+        Colleague<String> colleague1 = new ConcreteColleage("1", mediator);
+        Colleague<String> colleague2 = new ConcreteColleage("2", mediator);
+        Colleague<String> colleague3 = new ConcreteColleage("3", mediator);
+        Colleague<String> colleague4 = new ConcreteColleage("4", mediator);
+        Colleague<String> colleague5 = new ConcreteColleage("5", mediator);
+
+        mediator.addColleague(colleague1);
+        mediator.addColleague(colleague2);
+        mediator.addColleague(colleague3);
+        mediator.addColleague(colleague4);
+        mediator.addColleague(colleague5);
+
+        colleague1.send(new Message<>("2", "Hello 2"));
+        colleague2.send(new Message<>("3", "Hello 3"));
+        colleague3.send(new Message<>("1", "Hello 1"));
+        colleague4.send(new Message<>("5", "Hello 5"));
+        colleague5.send(new Message<>("4", "Hello 4"));
+
+        assertThrows(RuntimeException.class, () -> colleague5.send(new Message<>("8", "Hello 4")));
     }
 }
