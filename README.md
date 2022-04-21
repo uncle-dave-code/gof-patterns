@@ -31,23 +31,24 @@ Provide a surrogate or placeholder for another object to control access to it.
 
 ### Behavior Design Patterns
 #### Chain Of Responsibility
-delegates commands to a chain of processing objects.
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
 #### Command
-creates objects that encapsulate actions and parameters.
+Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 #### Interpreter
-implements a specialized language.
+Given a language, define a represention for its grammar along with an interpreter that uses the representation to interpret sentences in the language.
 #### Iterator
-accesses the elements of an object sequentially without exposing its underlying representation.
+Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.
 #### Mediator
+Define an object that encapsulates how a set of objects interact. Mediator promotes loose coupling by keeping objects from referring to each other explicitly, and it lets you vary their interaction independently.
 #### Memento
-provides the ability to restore an object to its previous state (undo).
+Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 #### Observer
-is a publish/subscribe pattern, which allows a number of observer objects to see an event.
+Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 #### State
-allows an object to alter its behavior when its internal state changes.
+Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 #### Strategy
-allows one of a family of algorithms to be selected on-the-fly at runtime.
+Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
 #### Template Method
-defines the skeleton of an algorithm as an abstract class, allowing its subclasses to provide concrete behavior.
+Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
 #### Visitor
-separates an algorithm from an object structure by moving the hierarchy of methods into one object.
+Represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
