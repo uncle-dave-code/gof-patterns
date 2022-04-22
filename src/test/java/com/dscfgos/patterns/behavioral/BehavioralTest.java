@@ -14,6 +14,9 @@ import com.dscfgos.patterns.behavioral.state.Context;
 import com.dscfgos.patterns.behavioral.state.StateA;
 import com.dscfgos.patterns.behavioral.state.StateB;
 import com.dscfgos.patterns.behavioral.state.StateC;
+import com.dscfgos.patterns.behavioral.template_method.ConcreteObject1;
+import com.dscfgos.patterns.behavioral.template_method.ConcreteObject2;
+import com.dscfgos.patterns.behavioral.template_method.TemplateClass;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -143,5 +146,14 @@ class BehavioralTest {
         System.out.println(stateContext.getState().toString());
         System.out.println(stateContext.getState().toString());
 
+    }
+
+    @org.junit.jupiter.api.Test
+    void testTemplateMethod() {
+        TemplateClass obj1 = new ConcreteObject1();
+        TemplateClass obj2 = new ConcreteObject2();
+
+        obj1.buildAll(true);
+        obj2.buildAll(false);
     }
 }
