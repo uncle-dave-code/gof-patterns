@@ -10,6 +10,10 @@ import com.dscfgos.patterns.behavioral.mediator.*;
 import com.dscfgos.patterns.behavioral.memento.UserCaretaker;
 import com.dscfgos.patterns.behavioral.memento.UserOriginator;
 import com.dscfgos.patterns.behavioral.observer.*;
+import com.dscfgos.patterns.behavioral.state.Context;
+import com.dscfgos.patterns.behavioral.state.StateA;
+import com.dscfgos.patterns.behavioral.state.StateB;
+import com.dscfgos.patterns.behavioral.state.StateC;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -117,5 +121,27 @@ class BehavioralTest {
         subject.addEventListener(new Observer3());
 
         subject.dispatchEvent(new CustomEvent<>("Hello"));
+    }
+
+    @org.junit.jupiter.api.Test
+    void testState() {
+        var stateContext = new Context();
+
+        var stateA = new StateA();
+        stateA.handle(stateContext);
+
+        System.out.println(stateContext.getState().toString());
+
+        var stateB = new StateB();
+        stateB.handle(stateContext);
+
+        System.out.println(stateContext.getState().toString());
+
+        var stateC = new StateC();
+        stateC.handle(stateContext);
+
+        System.out.println(stateContext.getState().toString());
+        System.out.println(stateContext.getState().toString());
+
     }
 }
