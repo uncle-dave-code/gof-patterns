@@ -9,6 +9,7 @@ import com.dscfgos.patterns.behavioral.iterator.Item;
 import com.dscfgos.patterns.behavioral.mediator.*;
 import com.dscfgos.patterns.behavioral.memento.UserCaretaker;
 import com.dscfgos.patterns.behavioral.memento.UserOriginator;
+import com.dscfgos.patterns.behavioral.observer.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -105,5 +106,16 @@ class BehavioralTest {
         user.restore(caretaker.get(0));
 
         System.out.println(user);
+    }
+
+    @org.junit.jupiter.api.Test
+    void testObserver() {
+        var subject = new Subject<String>();
+
+        subject.addEventListener(new Observer1());
+        subject.addEventListener(new Observer2());
+        subject.addEventListener(new Observer3());
+
+        subject.dispatchEvent(new CustomEvent<>("Hello"));
     }
 }
