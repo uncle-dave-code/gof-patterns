@@ -1,7 +1,7 @@
-package com.dscfgos.patterns.behavioral.interpreter.interfaces.arithmetic;
+package com.dscfgos.patterns.behavioral.interpreter.arithmetic;
 
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.Expression;
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.NonTerminalExpression;
+import com.dscfgos.patterns.behavioral.interpreter.Expression;
+import com.dscfgos.patterns.behavioral.interpreter.NonTerminalExpression;
 
 public class MultiplyExpression implements NonTerminalExpression<Double> {
     private Expression<Double> firstExpression;

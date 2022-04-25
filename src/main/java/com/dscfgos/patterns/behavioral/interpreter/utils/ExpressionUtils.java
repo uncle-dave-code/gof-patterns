@@ -1,8 +1,8 @@
-package com.dscfgos.patterns.behavioral.interpreter.interfaces.utils;
+package com.dscfgos.patterns.behavioral.interpreter.utils;
 
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.Expression;
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.NonTerminalExpression;
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.arithmetic.*;
+import com.dscfgos.patterns.behavioral.interpreter.Expression;
+import com.dscfgos.patterns.behavioral.interpreter.NonTerminalExpression;
+import com.dscfgos.patterns.behavioral.interpreter.arithmetic.*;
 
 import java.util.Arrays;
 import java.util.List;

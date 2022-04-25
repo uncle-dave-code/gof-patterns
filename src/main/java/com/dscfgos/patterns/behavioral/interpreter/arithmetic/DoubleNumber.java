@@ -1,6 +1,6 @@
-package com.dscfgos.patterns.behavioral.interpreter.interfaces.arithmetic;
+package com.dscfgos.patterns.behavioral.interpreter.arithmetic;
 
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.TerminalExpression;
+import com.dscfgos.patterns.behavioral.interpreter.TerminalExpression;
 
 public class DoubleNumber implements TerminalExpression<Double> {
     private final Double number;

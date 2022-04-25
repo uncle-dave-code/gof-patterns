@@ -4,7 +4,7 @@ import com.dscfgos.patterns.behavioral.chain_responsibility.ChainResponsibility;
 import com.dscfgos.patterns.behavioral.chain_responsibility.Request;
 import com.dscfgos.patterns.behavioral.command.OperationA;
 import com.dscfgos.patterns.behavioral.command.OperationB;
-import com.dscfgos.patterns.behavioral.interpreter.interfaces.utils.ExpressionUtils;
+import com.dscfgos.patterns.behavioral.interpreter.utils.ExpressionUtils;
 import com.dscfgos.patterns.behavioral.iterator.CustomCollection;
 import com.dscfgos.patterns.behavioral.iterator.Item;
 import com.dscfgos.patterns.behavioral.mediator.*;
@@ -15,6 +15,9 @@ import com.dscfgos.patterns.behavioral.state.Context;
 import com.dscfgos.patterns.behavioral.state.StateA;
 import com.dscfgos.patterns.behavioral.state.StateB;
 import com.dscfgos.patterns.behavioral.state.StateC;
+import com.dscfgos.patterns.behavioral.strategy.AddStrategy;
+import com.dscfgos.patterns.behavioral.strategy.StrategyContext;
+import com.dscfgos.patterns.behavioral.strategy.SubstractStrategy;
 import com.dscfgos.patterns.behavioral.template_method.ConcreteObject1;
 import com.dscfgos.patterns.behavioral.template_method.ConcreteObject2;
 import com.dscfgos.patterns.behavioral.template_method.TemplateClass;
@@ -186,6 +189,18 @@ class BehavioralTest {
         System.out.println(expressionUtils.evaluateExpression("12*3"));
         System.out.println(expressionUtils.evaluateExpression("20/5"));
         System.out.println(expressionUtils.evaluateExpression("2+4-2*20/5"));
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void testStrategy() {
+        StrategyContext context = new StrategyContext(new AddStrategy());
+        assertEquals(3.0, context.executeStrategy(1.0, 2.0));
+        System.out.println(context.executeStrategy(1.0, 2.0));
+
+        context = new StrategyContext(new SubstractStrategy());
+        assertEquals(4.0, context.executeStrategy(5.0, 1.0));
+        System.out.println(context.executeStrategy(5.0, 1.0));
 
     }
 }
