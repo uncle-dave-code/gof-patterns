@@ -4,6 +4,7 @@ import com.dscfgos.patterns.behavioral.chain_responsibility.ChainResponsibility;
 import com.dscfgos.patterns.behavioral.chain_responsibility.Request;
 import com.dscfgos.patterns.behavioral.command.OperationA;
 import com.dscfgos.patterns.behavioral.command.OperationB;
+import com.dscfgos.patterns.behavioral.interpreter.interfaces.utils.ExpressionUtils;
 import com.dscfgos.patterns.behavioral.iterator.CustomCollection;
 import com.dscfgos.patterns.behavioral.iterator.Item;
 import com.dscfgos.patterns.behavioral.mediator.*;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BehavioralTest {
 
@@ -51,7 +53,7 @@ class BehavioralTest {
                 new OperationB("4")
         );
 
-        for (var operation: operations) {
+        for (var operation : operations) {
             operation.execute();
         }
     }
@@ -66,7 +68,7 @@ class BehavioralTest {
         CustomCollection<Item> itemsCollection = new CustomCollection<>(items);
 
         var iterator = itemsCollection.getIterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             var item = iterator.next();
             System.out.printf("Code %s : Name: %s%n", item.getCode(), item.getName());
         }
@@ -166,6 +168,24 @@ class BehavioralTest {
         Element concreteElementB = new ConcreteElementB();
         concreteElementA.accept(visitor);
         concreteElementB.accept(visitor);
+
+    }
+
+    @org.junit.jupiter.api.Test
+    void testInterpreter() {
+        ExpressionUtils expressionUtils = new ExpressionUtils();
+        assertAll(
+                () -> assertEquals("3.0", expressionUtils.evaluateExpression("1+2")),
+                () -> assertEquals("8.0", expressionUtils.evaluateExpression("10-2")),
+                () -> assertEquals("36.0", expressionUtils.evaluateExpression("12*3")),
+                () -> assertEquals("4.0", expressionUtils.evaluateExpression("20/5")),
+                () -> assertEquals("-2.0", expressionUtils.evaluateExpression("2+4-2*20/5"))
+        );
+        System.out.println(expressionUtils.evaluateExpression("1+2"));
+        System.out.println(expressionUtils.evaluateExpression("10-2"));
+        System.out.println(expressionUtils.evaluateExpression("12*3"));
+        System.out.println(expressionUtils.evaluateExpression("20/5"));
+        System.out.println(expressionUtils.evaluateExpression("2+4-2*20/5"));
 
     }
 }
