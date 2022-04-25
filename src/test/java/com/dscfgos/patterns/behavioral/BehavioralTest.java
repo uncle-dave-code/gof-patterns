@@ -17,6 +17,7 @@ import com.dscfgos.patterns.behavioral.state.StateC;
 import com.dscfgos.patterns.behavioral.template_method.ConcreteObject1;
 import com.dscfgos.patterns.behavioral.template_method.ConcreteObject2;
 import com.dscfgos.patterns.behavioral.template_method.TemplateClass;
+import com.dscfgos.patterns.behavioral.visitor.*;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -155,5 +156,16 @@ class BehavioralTest {
 
         obj1.buildAll(true);
         obj2.buildAll(false);
+    }
+
+    @org.junit.jupiter.api.Test
+    void testVisitor() {
+        Visitor visitor = new ConcreteVisitor();
+
+        Element concreteElementA = new ConcreteElementA();
+        Element concreteElementB = new ConcreteElementB();
+        concreteElementA.accept(visitor);
+        concreteElementB.accept(visitor);
+
     }
 }
